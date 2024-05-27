@@ -10,7 +10,7 @@ class MainWindow(QMainWindow):
         super().__init__(parent)
 
         loader = QUiLoader()
-        self.window = loader.load("QtEgzam/untitled.ui", self)
+        self.window = loader.load(r"c:\Users\igido\Desktop\MyProjects\QtEgzam\untitled.ui", self)
         self.setWindowTitle("Egzam1")
 
         #connect signals
@@ -20,7 +20,11 @@ class MainWindow(QMainWindow):
 
     @Slot()
     def saveNote(self):
-        note = QLabel(exampleText)
+        note = QLabel(f"""
+data: {self.window.calendarWidget.selectedDate().toString("yyyy-MM-dd")}
+opis dnia:
+{self.window.textEdit.toPlainText()}
+""")
         note.setWordWrap(True)
         note.setFixedSize(200,200)
         self.window.scrollAreaLayout.addWidget(note)
